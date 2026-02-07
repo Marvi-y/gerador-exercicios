@@ -2,6 +2,8 @@ TEXTS = {
     "pt": {
         "title": "📘 Plataforma de Exercícios Matemáticos",
         "subtitle": "Aprenda no seu ritmo. Evolua com mérito.",
+
+        # Geral
         "level": "Nível",
         "difficulty": "Dificuldade",
         "streak": "Acertos consecutivos",
@@ -14,13 +16,34 @@ TEXTS = {
         "correct": "✅ Correto! Você está evoluindo!",
         "wrong": "❌ Tente novamente",
         "unlock": "🎉 Novo nível desbloqueado!",
+
+        # Dicas
         "tip_sum": "💡 Dica: somar é juntar valores",
         "tip_sub": "💡 Dica: subtrair é tirar uma quantidade da outra",
-        "tip_mul": "💡 Dica: multiplicar é somar várias vezes"
+        "tip_mul": "💡 Dica: multiplicar é somar várias vezes",
+
+        # Configurações
+        "settings": "⚙️ Configurações",
+        "choose_difficulty": "Escolha a dificuldade (ou deixe automático)",
+        "auto": "Automático",
+        "easy": "Fácil",
+        "medium": "Médio",
+        "hard": "Difícil",
+
+        # Treino de erros
+        "train_errors": "🔁 Treinar exercícios errados",
+        "back_normal": "⬅️ Voltar ao modo normal",
+
+        # Histórico
+        "history": "📊 Histórico de respostas",
+        "no_history": "Nenhum exercício resolvido ainda."
     },
+
     "en": {
         "title": "📘 Math Practice Platform",
         "subtitle": "Learn at your own pace. Improve with merit.",
+
+        # General
         "level": "Level",
         "difficulty": "Difficulty",
         "streak": "Correct answers in a row",
@@ -33,8 +56,26 @@ TEXTS = {
         "correct": "✅ Correct! You're improving!",
         "wrong": "❌ Try again",
         "unlock": "🎉 New level unlocked!",
+
+        # Tips
         "tip_sum": "💡 Tip: addition means combining values",
         "tip_sub": "💡 Tip: subtraction means taking away a quantity",
-        "tip_mul": "💡 Tip: multiplication is repeated addition"
+        "tip_mul": "💡 Tip: multiplication is repeated addition",
+
+        # Settings
+        "settings": "⚙️ Settings",
+        "choose_difficulty": "Choose the difficulty (or leave automatic)",
+        "auto": "Automatic",
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard",
+
+        # Error training
+        "train_errors": "🔁 Practice wrong exercises",
+        "back_normal": "⬅️ Back to normal mode",
+
+        # History
+        "history": "📊 Answer history",
+        "no_history": "No exercises solved yet."
     }
 }
