@@ -44,18 +44,24 @@ if "nivel" not in st.session_state:
     st.session_state.operacao = None
     st.session_state.resultado = None
     st.session_state.explicacao = None
+if "erros" not in st.session_state:
+    st.session_state.erros = []
+
+if "modo_treino_erros" not in st.session_state:
+    st.session_state.modo_treino_erros = False
+if "dificuldade_manual" not in st.session_state:
+    st.session_state.dificuldade_manual = None
 
 
 # =============================
 # FUNÇÕES
 # =============================
-def dificuldade_por_nivel(nivel):
-    if nivel == 1:
-        return "Easy" if st.session_state.lang == "en" else "Fácil"
-    elif nivel == 2:
-        return "Medium" if st.session_state.lang == "en" else "Médio"
+def gerar_exercicio():
+    if st.session_state.dificuldade_manual:
+        dificuldade = st.session_state.dificuldade_manual
     else:
-        return "Hard" if st.session_state.lang == "en" else "Difícil"
+        dificuldade = dificuldade_por_nivel(st.session_state.nivel)
+
 
 def gerar_exercicio():
     dificuldade = dificuldade_por_nivel(st.session_state.nivel)
@@ -96,9 +102,31 @@ if st.session_state.a is None:
 # =============================
 # INTERFACE
 # =============================
+st.subheader("⚙️ Configurações")
+
+opcao = st.selectbox(
+    "Escolha a dificuldade (ou deixe automático)",
+    ["Automático", "Fácil", "Médio", "Difícil"]
+)
+
+if opcao == "Automático":
+    st.session_state.dificuldade_manual = None
+else:
+    st.session_state.dificuldade_manual = opcao
+
 st.subheader(f"🏆 {T['level']} {st.session_state.nivel}")
 st.write(f"{T['difficulty']}: **{dificuldade_por_nivel(st.session_state.nivel)}**")
 st.write(f"🔥 {T['streak']}: {st.session_state.acertos}/3")
+if st.session_state.erros:
+    if st.button("🔁 Treinar exercícios errados"):
+        st.session_state.modo_treino_erros = True
+        erro = random.choice(st.session_state.erros)
+
+        st.session_state.a = erro["a"]
+        st.session_state.b = erro["b"]
+        st.session_state.operacao = erro["operacao"]
+        st.session_state.resultado = erro["resultado"]
+        st.session_state.explicacao = erro["explicacao"]
 
 st.subheader(
     f"{T['exercise']}: "
@@ -111,6 +139,7 @@ resposta = st.text_input(
     T["input"],
     placeholder=T["placeholder"]
 )
+
 
 # =============================
 # VERIFICAÇÃO
@@ -152,6 +181,11 @@ if st.button(T["check"], use_container_width=True):
         "resposta_correta": st.session_state.resultado,
         "correto": False
         })
+if st.session_state.modo_treino_erros:
+    if st.button("⬅️ Voltar ao modo normal"):
+        st.session_state.modo_treino_erros = False
+        gerar_exercicio()
+
  
 if st.button(T["new"], use_container_width=True):
     gerar_exercicio()
@@ -167,9 +201,27 @@ else:
                 f"✅ {item['expressao']} = {item['resposta_correta']} "
                 f"(Você respondeu {item['resposta_usuario']})"
             )
+        if st.session_state.modo_treino_erros:
+            st.session_state.erros = [
+                e for e in st.session_state.erros
+                if not (
+                    e["a"] == st.session_state.a and
+                    e["b"] == st.session_state.b and
+                    e["operacao"] == st.session_state.operacao
+                )
+            ]
+
         else:
             st.error(
                 f"❌ {item['expressao']} = {item['resposta_correta']} "
                 f"(Você respondeu {item['resposta_usuario']})"
             )
+            st.session_state.erros.append({
+                "a": st.session_state.a,
+                "b": st.session_state.b,
+                "operacao": st.session_state.operacao,
+                "resultado": st.session_state.resultado,
+                "explicacao": st.session_state.explicacao
+                })
+
 
