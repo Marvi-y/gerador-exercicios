@@ -95,7 +95,8 @@ def gerar_exercicio():
 # =============================
 # GERAR EXERCÍCIO INICIAL
 # =============================
-
+if st.session_state.a is None:
+    gerar_exercicio()
 
 # =============================
 # INTERFACE
