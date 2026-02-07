@@ -34,6 +34,8 @@ st.write(T["subtitle"])
 # =============================
 # INICIALIZA ESTADOS
 # =============================
+if "historico" not in st.session_state:
+    st.session_state.historico = []
 if "nivel" not in st.session_state:
     st.session_state.nivel = 1
     st.session_state.acertos = 0
@@ -42,6 +44,7 @@ if "nivel" not in st.session_state:
     st.session_state.operacao = None
     st.session_state.resultado = None
     st.session_state.explicacao = None
+
 
 # =============================
 # FUNÇÕES
@@ -122,6 +125,12 @@ if st.button(T["check"], use_container_width=True):
     if resposta == st.session_state.resultado:
         st.success(T["correct"])
         st.session_state.acertos += 1
+        st.session_state.historico.append({
+        "expressao": f"{st.session_state.a} {st.session_state.operacao} {st.session_state.b}",
+        "resposta_usuario": resposta,
+        "resposta_correta": st.session_state.resultado,
+        "correto": True
+        })
 
         if st.session_state.acertos >= 3:
             if st.session_state.nivel < 3:
@@ -137,6 +146,30 @@ if st.button(T["check"], use_container_width=True):
         st.error(T["wrong"])
         st.info(st.session_state.explicacao)
         st.session_state.acertos = 0
-
+        st.session_state.historico.append({
+        "expressao": f"{st.session_state.a} {st.session_state.operacao} {st.session_state.b}",
+        "resposta_usuario": resposta,
+        "resposta_correta": st.session_state.resultado,
+        "correto": False
+        })
+ 
 if st.button(T["new"], use_container_width=True):
     gerar_exercicio()
+st.divider()
+st.subheader("📊 Histórico de respostas")
+
+if not st.session_state.historico:
+    st.write("Nenhum exercício resolvido ainda.")
+else:
+    for item in reversed(st.session_state.historico):
+        if item["correto"]:
+            st.success(
+                f"✅ {item['expressao']} = {item['resposta_correta']} "
+                f"(Você respondeu {item['resposta_usuario']})"
+            )
+        else:
+            st.error(
+                f"❌ {item['expressao']} = {item['resposta_correta']} "
+                f"(Você respondeu {item['resposta_usuario']})"
+            )
+
