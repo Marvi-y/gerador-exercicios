@@ -1,10 +1,35 @@
 import streamlit as st
 import random
+from texts import TEXTS
 
-st.set_page_config(page_title="Gerador Educacional", page_icon="📘", layout="centered")
+# =============================
+# CONFIGURAÇÃO DA PÁGINA
+# =============================
+st.set_page_config(
+    page_title="Gerador Educacional",
+    page_icon="📘",
+    layout="centered"
+)
 
-st.title("📘 Plataforma de Exercícios Matemáticos")
-st.write("Aprenda no seu ritmo. Evolua com mérito.")
+# =============================
+# IDIOMA
+# =============================
+if "lang" not in st.session_state:
+    st.session_state.lang = "pt"
+
+st.session_state.lang = st.selectbox(
+    "🌐 Language / Idioma",
+    ["pt", "en"],
+    format_func=lambda x: "Português 🇧🇷" if x == "pt" else "English 🇺🇸"
+)
+
+T = TEXTS[st.session_state.lang]
+
+# =============================
+# TÍTULO
+# =============================
+st.title(T["title"])
+st.write(T["subtitle"])
 
 # =============================
 # INICIALIZA ESTADOS
@@ -23,18 +48,18 @@ if "nivel" not in st.session_state:
 # =============================
 def dificuldade_por_nivel(nivel):
     if nivel == 1:
-        return "Fácil"
+        return "Easy" if st.session_state.lang == "en" else "Fácil"
     elif nivel == 2:
-        return "Médio"
+        return "Medium" if st.session_state.lang == "en" else "Médio"
     else:
-        return "Difícil"
+        return "Hard" if st.session_state.lang == "en" else "Difícil"
 
 def gerar_exercicio():
     dificuldade = dificuldade_por_nivel(st.session_state.nivel)
 
-    if dificuldade == "Fácil":
+    if dificuldade in ["Fácil", "Easy"]:
         minimo, maximo = 1, 10
-    elif dificuldade == "Médio":
+    elif dificuldade in ["Médio", "Medium"]:
         minimo, maximo = 10, 50
     else:
         minimo, maximo = 50, 100
@@ -45,13 +70,13 @@ def gerar_exercicio():
 
     if operacao == "+":
         resultado = a + b
-        explicacao = f"💡 Dica: somar é juntar valores: {a} + {b} = {resultado}"
+        explicacao = T["tip_sum"]
     elif operacao == "-":
         resultado = a - b
-        explicacao = f"💡 Dica: subtrair é tirar uma quantidade da outra: {a} - {b} = {resultado}"
+        explicacao = T["tip_sub"]
     else:
         resultado = a * b
-        explicacao = "💡 Dica: multiplicar é somar várias vezes"
+        explicacao = T["tip_mul"]
 
     st.session_state.a = a
     st.session_state.b = b
@@ -68,49 +93,50 @@ if st.session_state.a is None:
 # =============================
 # INTERFACE
 # =============================
-st.subheader(f"🏆 Nível {st.session_state.nivel}")
-st.write(f"Dificuldade: **{dificuldade_por_nivel(st.session_state.nivel)}**")
-st.write(f"🔥 Acertos consecutivos: {st.session_state.acertos}/3")
+st.subheader(f"🏆 {T['level']} {st.session_state.nivel}")
+st.write(f"{T['difficulty']}: **{dificuldade_por_nivel(st.session_state.nivel)}**")
+st.write(f"🔥 {T['streak']}: {st.session_state.acertos}/3")
 
 st.subheader(
-    f"✏️ Exercício: {st.session_state.a} "
+    f"{T['exercise']}: "
+    f"{st.session_state.a} "
     f"{st.session_state.operacao} "
     f"{st.session_state.b}"
 )
 
 resposta = st.text_input(
-    "✏️ Digite sua resposta",
-    placeholder="Ex: 42"
+    T["input"],
+    placeholder=T["placeholder"]
 )
 
-
-if st.button("Verificar"):
+# =============================
+# VERIFICAÇÃO
+# =============================
+if st.button(T["check"], use_container_width=True):
     try:
         resposta = int(resposta)
     except:
-        st.warning("Digite apenas números")
+        st.warning(T["only_numbers"])
         st.stop()
 
     if resposta == st.session_state.resultado:
-        st.success("✅ Correto! Você está evoluindo!")
+        st.success(T["correct"])
         st.session_state.acertos += 1
 
-        # DESBLOQUEIO DE NÍVEL
         if st.session_state.acertos >= 3:
             if st.session_state.nivel < 3:
                 st.session_state.nivel += 1
                 st.session_state.acertos = 0
-                st.success("🎉 Novo nível desbloqueado!")
+                st.success(T["unlock"])
             else:
                 st.balloons()
 
         gerar_exercicio()
 
     else:
-        st.error("❌ Tente novamente")
+        st.error(T["wrong"])
         st.info(st.session_state.explicacao)
         st.session_state.acertos = 0
 
-if st.button("🔄 Novo exercício"):
+if st.button(T["new"], use_container_width=True):
     gerar_exercicio()
-    
