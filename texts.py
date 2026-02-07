@@ -1,0 +1,40 @@
+TEXTS = {
+    "pt": {
+        "title": "📘 Plataforma de Exercícios Matemáticos",
+        "subtitle": "Aprenda no seu ritmo. Evolua com mérito.",
+        "level": "Nível",
+        "difficulty": "Dificuldade",
+        "streak": "Acertos consecutivos",
+        "exercise": "✏️ Exercício",
+        "input": "✏️ Digite sua resposta",
+        "placeholder": "Ex: 42",
+        "check": "Verificar",
+        "new": "🔄 Novo exercício",
+        "only_numbers": "Digite apenas números",
+        "correct": "✅ Correto! Você está evoluindo!",
+        "wrong": "❌ Tente novamente",
+        "unlock": "🎉 Novo nível desbloqueado!",
+        "tip_sum": "💡 Dica: somar é juntar valores",
+        "tip_sub": "💡 Dica: subtrair é tirar uma quantidade da outra",
+        "tip_mul": "💡 Dica: multiplicar é somar várias vezes"
+    },
+    "en": {
+        "title": "📘 Math Practice Platform",
+        "subtitle": "Learn at your own pace. Improve with merit.",
+        "level": "Level",
+        "difficulty": "Difficulty",
+        "streak": "Correct answers in a row",
+        "exercise": "✏️ Exercise",
+        "input": "✏️ Type your answer",
+        "placeholder": "e.g. 42",
+        "check": "Check",
+        "new": "🔄 New exercise",
+        "only_numbers": "Please enter numbers only",
+        "correct": "✅ Correct! You're improving!",
+        "wrong": "❌ Try again",
+        "unlock": "🎉 New level unlocked!",
+        "tip_sum": "💡 Tip: addition means combining values",
+        "tip_sub": "💡 Tip: subtraction means taking away a quantity",
+        "tip_mul": "💡 Tip: multiplication is repeated addition"
+    }
+}
