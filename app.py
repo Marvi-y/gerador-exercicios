@@ -63,8 +63,13 @@ def gerar_exercicio():
         dificuldade = dificuldade_por_nivel(st.session_state.nivel)
 
 
-def gerar_exercicio():
-    dificuldade = dificuldade_por_nivel(st.session_state.nivel)
+def dificuldade_por_nivel(nivel):
+    if nivel == 1:
+        return "Fácil" if st.session_state.lang == "pt" else "Easy"
+    elif nivel == 2:
+        return "Médio" if st.session_state.lang == "pt" else "Medium"
+    else:
+        return "Difícil" if st.session_state.lang == "pt" else "Hard"
 
     if dificuldade in ["Fácil", "Easy"]:
         minimo, maximo = 1, 10
@@ -122,11 +127,6 @@ if st.session_state.erros:
         st.session_state.modo_treino_erros = True
         erro = random.choice(st.session_state.erros)
 
-        st.session_state.a = erro["a"]
-        st.session_state.b = erro["b"]
-        st.session_state.operacao = erro["operacao"]
-        st.session_state.resultado = erro["resultado"]
-        st.session_state.explicacao = erro["explicacao"]
 
 st.subheader(
     f"{T['exercise']}: "
