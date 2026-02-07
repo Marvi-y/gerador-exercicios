@@ -100,7 +100,7 @@ if st.session_state.a is None:
 st.title(T["title"])
 st.write(T["subtitle"])
 
-st.subheader(T[("⚙️ Configurações")]
+st.subheader(T["⚙️ Configurações"]
 opcao = st.selectbox(
     "Escolha a dificuldade (ou deixe automático)",
     ["Automático", "Fácil", "Médio", "Difícil"]
