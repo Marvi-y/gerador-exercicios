@@ -1,3 +1,4 @@
+
 import streamlit as st
 from i18n.texts import TEXTS
 from logic.state import init_state
@@ -24,11 +25,10 @@ T = TEXTS[st.session_state.lang]
 
 init_state()
 
-if st.session_state.a is None:
-    gerar_exercicio(T, st.session_state.lang)
 def init_state():
     if "operacoes_ativas" not in st.session_state:
         st.session_state.operacoes_ativas = ["+", "-", "*"]
+
 
 titulo(T)
 configuracoes(T)
@@ -39,6 +39,8 @@ st.subheader(
     f"{T['exercise']}: {st.session_state.a} "
     f"{symbol} {st.session_state.b if op != '^' else ''}"
 )
+if st.session_state.a is None:
+    gerar_exercicio(T, st.session_state.lang)
 
 resposta = st.text_input(T["input"], placeholder=T["placeholder"])
 
