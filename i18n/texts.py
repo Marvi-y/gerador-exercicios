@@ -95,7 +95,7 @@ TEXTS = {
         "op_mul": "Multiplication (×)",
         "op_div": "Division (÷)",
         "op_pow": "Exponentiation (^)",
-        "select_one_op": "Please select at least one operation."
+        "select_one_op": "Please select at least one operation.",
 
         # Error training
        
