@@ -1,5 +1,6 @@
 import random
 import streamlit as st
+from logic.difficulty import dificuldade_por_nivel
 
 def gerar_exercicio(T, lang):
     dificuldade = st.session_state.dificuldade_manual
