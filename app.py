@@ -2,7 +2,6 @@
 import streamlit as st
 from i18n.texts import TEXTS
 from logic.state import init_state
-init_state()
 from logic.difficulty import dificuldade_por_nivel
 from ui.layout import titulo, configuracoes, historico
 from logic.stats import calcular_estatisticas
@@ -23,21 +22,18 @@ st.session_state.lang = st.selectbox(
 )
 
 T = TEXTS[st.session_state.lang]
-
+init_state()
 titulo(T)
 configuracoes(T)
 selecionar_operacoes(T)
-if "operacao" not in st.session_state or st.session_state.operacao is None:
+if st.session_state.operacao is None:
     gerar_exercicio(T, st.session_state.lang)
-
-op = st.session_state.operacao
-a = st.session_state.a
-b = st.session_state.b
+    
+    op = st.session_state.operacao
+    a = st.session_state.a
+    b = st.session_state.b
     
 symbol = "²" if op == "^" and st.session_state.b == 2 else op
-st.subheader(
-    f"{T['exercise']}: {a} {symbol} {b if op != '^' else ''}"
-)
 
 resposta = st.text_input(T["input"], placeholder=T["placeholder"])
 
@@ -63,10 +59,18 @@ if st.button(T["check"], use_container_width=True):
         st.error(T["wrong"])
         st.info(st.session_state.explicacao)
 
-    gerar_exercicio(T, st.session_state.lang)
-
+    st.session_state.precisa_novo_exercicio = True
 if st.button(T["new"], use_container_width=True):
-    gerar_exercicio(T, st.session_state.lang)
+    st.session_state.precisa_novo_exercicio = False
+a = st.session_state.a
+b = st.session_state.b
+op = st.session_state.operacao
+
+symbol = "²" if op == "^" and b == 2 else op
+
+st.subheader(
+    f"{T['exercise']}: {a} {symbol} {b if op != '^' else ''}"
+)
 
 stats = calcular_estatisticas(st.session_state.historico)
 estatisticas(T, stats)
