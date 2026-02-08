@@ -1,25 +1,11 @@
 import random
 import streamlit as st
 
-def dificuldade_por_nivel(nivel, lang):
-    if nivel == 1:
-        return "Fácil" if lang == "pt" else "Easy"
-    elif nivel == 2:
-        return "Médio" if lang == "pt" else "Medium"
-    else:
-        return "Difícil" if lang == "pt" else "Hard"
-
-
 def gerar_exercicio(T, lang):
-    if st.session_state.modo_treino_erros and st.session_state.erros:
-        erro = random.choice(st.session_state.erros)
-        st.session_state.update(erro)
-        return
+    dificuldade = st.session_state.dificuldade_manual
 
-    dificuldade = (
-        st.session_state.dificuldade_manual
-        or dificuldade_por_nivel(st.session_state.nivel, lang)
-    )
+    if not dificuldade:
+        dificuldade = dificuldade_por_nivel(st.session_state.nivel, lang)
 
     if dificuldade in ["Fácil", "Easy"]:
         minimo, maximo = 1, 10
@@ -28,11 +14,45 @@ def gerar_exercicio(T, lang):
     else:
         minimo, maximo = 50, 100
 
-    a = random.randint(minimo, maximo)
-    b = random.randint(minimo, maximo)
     operacao = random.choice(["+", "-", "*", "/", "^"])
 
-    operacao = random.choice(["+", "-", "*", "/", "^"])
+    # valores padrão (segurança)
+    a = b = resultado = None
+    explicacao = ""
+
+    if operacao == "+":
+        a = random.randint(minimo, maximo)
+        b = random.randint(minimo, maximo)
+        resultado = a + b
+        explicacao = T["tip_sum"]
+
+    elif operacao == "-":
+        a = random.randint(minimo, maximo)
+        b = random.randint(minimo, maximo)
+        resultado = a - b
+        explicacao = T["tip_sub"]
+
+    elif operacao == "*":
+        a = random.randint(minimo, maximo)
+        b = random.randint(minimo, maximo)
+        resultado = a * b
+        explicacao = T["tip_mul"]
+
+    elif operacao == "/":
+        b = random.randint(1, 10)
+        resultado = random.randint(1, 10)
+        a = b * resultado
+        explicacao = T["tip_div"]
+
+    elif operacao == "^":
+        a = random.randint(2, 5)
+        b = random.randint(2, 3)
+        resultado = a ** b
+        explicacao = T["tip_pow"]
+
+    else:
+        raise ValueError(f"Operação inválida: {operacao}")
+
     st.session_state.update({
         "a": a,
         "b": b,
