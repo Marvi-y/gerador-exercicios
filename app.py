@@ -2,6 +2,7 @@
 import streamlit as st
 from i18n.texts import TEXTS
 from logic.state import init_state
+init_state()
 from logic.difficulty import dificuldade_por_nivel
 from ui.layout import titulo, configuracoes, historico
 from logic.stats import calcular_estatisticas
@@ -22,7 +23,7 @@ st.session_state.lang = st.selectbox(
 )
 
 T = TEXTS[st.session_state.lang]
-init_state()
+
 titulo(T)
 configuracoes(T)
 selecionar_operacoes(T)
