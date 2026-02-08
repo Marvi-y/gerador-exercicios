@@ -36,7 +36,17 @@ TEXTS = {
 
         # Histórico
         "history": "📊 Histórico de respostas",
-        "no_history": "Nenhum exercício resolvido ainda."
+        "no_history": "Nenhum exercício resolvido ainda."   
+        "stats": "📈 Estatísticas",
+        "total_exercises": "Total de exercícios",
+        "correct_answers": "Acertos",
+        "wrong_answers": "Erros",
+        "accuracy": "Taxa de acerto",
+        "no_stats": "Resolva exercícios para ver suas estatísticas.",
+        "performance_good": "Ótimo desempenho! Continue assim 🚀",
+        "performance_medium": "Bom progresso, mas ainda dá para melhorar 💪",
+        "performance_low": "Não desista! Errar faz parte do aprendizado 🌱",
+
     },
 
     "en": {
@@ -77,5 +87,14 @@ TEXTS = {
         # History
         "history": "📊 Answer history",
         "no_history": "No exercises solved yet."
+        "stats": "📈 Statistics",
+        "total_exercises": "Total exercises",
+        "correct_answers": "Correct answers",
+        "wrong_answers": "Wrong answers",
+        "accuracy": "Accuracy rate",
+        "no_stats": "Solve exercises to see your statistics.",
+        "performance_good": "Great performance! Keep going 🚀",
+        "performance_medium": "Good progress, but you can improve 💪",
+        "performance_low": "Don't give up! Making mistakes is part of learning 🌱",
     }
 }
