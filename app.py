@@ -40,10 +40,6 @@ def init_state():
 titulo(T)
 configuracoes(T)
 selecionar_operacoes(T)
-st.subheader(
-    f"{T['exercise']}: {st.session_state.a} "
-    f"{symbol} {st.session_state.b if op != '^' else ''}"
-)
 if st.session_state.a is None:
     gerar_exercicio(T, st.session_state.lang)
     op = st.session_state.operacao
