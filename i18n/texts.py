@@ -90,7 +90,7 @@ TEXTS = {
 
         # History
         "history": "📊 Answer history",
-        "no_history": "No exercises solved yet."
+        "no_history": "No exercises solved yet.",
         "stats": "📈 Statistics",
         "total_exercises": "Total exercises",
         "correct_answers": "Correct answers",
