@@ -1,8 +1,8 @@
 import streamlit as st
 
 def selecionar_operacoes(T):
-    st.subheader(T["operations"])
-
+    if "operacoes_ativas" not in st.session_state:
+        st.session_state.operacoes_ativas = ["+", "-", "*"]
     ops = {
         "+": T["op_sum"],
         "-": T["op_sub"],
