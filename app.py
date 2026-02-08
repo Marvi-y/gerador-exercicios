@@ -23,21 +23,10 @@ st.session_state.lang = st.selectbox(
 
 T = TEXTS[st.session_state.lang]
 init_state()
-def init_state():
-    if "operacoes_ativas" not in st.session_state:
-        st.session_state.operacoes_ativas = ["+", "-", "*"]
-
-    if "a" not in st.session_state:
-        st.session_state.a = None
-    if "b" not in st.session_state:
-        st.session_state.b = None
-    if "operacao" not in st.session_state:
-        st.session_state.operacao = None
-
 titulo(T)
 configuracoes(T)
 selecionar_operacoes(T)
-if st.session_state.a is None:
+if st.session_state.operacao is None:
     gerar_exercicio(T, st.session_state.lang)
     
     op = st.session_state.operacao
