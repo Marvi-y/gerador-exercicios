@@ -30,18 +30,9 @@ def gerar_exercicio(T, lang):
 
     a = random.randint(minimo, maximo)
     b = random.randint(minimo, maximo)
-    operacao = random.choice(["+", "-", "*"])
+    operacao = random.choice(["+", "-", "*", "/", "^"])
 
-    if operacao == "+":
-        resultado = a + b
-        explicacao = T["tip_sum"]
-    elif operacao == "-":
-        resultado = a - b
-        explicacao = T["tip_sub"]
-    else:
-        resultado = a * b
-        explicacao = T["tip_mul"]
-
+    operacao = random.choice(["+", "-", "*", "/", "^"])
     st.session_state.update({
         "a": a,
         "b": b,
