@@ -32,8 +32,6 @@ def init_state():
 
 titulo(T)
 configuracoes(T)
-op = st.session_state.operacao
-symbol = "²" if op == "^" and st.session_state.b == 2 else op
 selecionar_operacoes(T)
 st.subheader(
     f"{T['exercise']}: {st.session_state.a} "
@@ -41,6 +39,8 @@ st.subheader(
 )
 if st.session_state.a is None:
     gerar_exercicio(T, st.session_state.lang)
+    op = st.session_state.operacao
+symbol = "²" if op == "^" and st.session_state.b == 2 else op
 
 resposta = st.text_input(T["input"], placeholder=T["placeholder"])
 
