@@ -22,7 +22,7 @@ st.session_state.lang = st.selectbox(
 )
 
 T = TEXTS[st.session_state.lang]
-
+init_state()
 def init_state():
     if "operacoes_ativas" not in st.session_state:
         st.session_state.operacoes_ativas = ["+", "-", "*"]
@@ -34,7 +34,7 @@ def init_state():
     if "operacao" not in st.session_state:
         st.session_state.operacao = None
    
-init_state()
+
 
 titulo(T)
 configuracoes(T)
