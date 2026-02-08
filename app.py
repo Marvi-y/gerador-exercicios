@@ -40,7 +40,7 @@ titulo(T)
 configuracoes(T)
 selecionar_operacoes(T)
 if st.session_state.a is None:
-    gerar_exercicio(T)
+    gerar_exercicio(T, st.session_state.lang)
     op = st.session_state.operacao
 symbol = "²" if op == "^" and st.session_state.b == 2 else op
 
