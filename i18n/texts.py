@@ -37,7 +37,7 @@ TEXTS = {
         "op_mul": "Multiplicação (×)",
         "op_div": "Divisão (÷)",
         "op_pow": "Potenciação (^)",
-        "select_one_op": "Selecione pelo menos uma operação."
+        "select_one_op": "Selecione pelo menos uma operação.",
 
         # Treino de erros
         
