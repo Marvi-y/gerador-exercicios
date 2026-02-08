@@ -33,8 +33,6 @@ def init_state():
         st.session_state.b = None
     if "operacao" not in st.session_state:
         st.session_state.operacao = None
-   
-
 
 titulo(T)
 configuracoes(T)
@@ -45,6 +43,7 @@ if st.session_state.a is None:
     op = st.session_state.operacao
     a = st.session_state.a
     b = st.session_state.b
+    
 symbol = "²" if op == "^" and st.session_state.b == 2 else op
 
 resposta = st.text_input(T["input"], placeholder=T["placeholder"])
