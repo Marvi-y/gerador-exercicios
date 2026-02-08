@@ -21,7 +21,9 @@ TEXTS = {
         "tip_sum": "💡 Dica: somar é juntar valores",
         "tip_sub": "💡 Dica: subtrair é tirar uma quantidade da outra",
         "tip_mul": "💡 Dica: multiplicar é somar várias vezes",
-
+        "tip_div": "💡 Dica: dividir é repartir em partes iguais",
+        "tip_pow": "💡 Dica: potenciação é multiplicar um número por ele mesmo várias vezes",
+        
         # Configurações
         "settings": "⚙️ Configurações",
         "choose_difficulty": "Escolha a dificuldade (ou deixe automático)",
@@ -71,6 +73,8 @@ TEXTS = {
         "tip_sum": "💡 Tip: addition means combining values",
         "tip_sub": "💡 Tip: subtraction means taking away a quantity",
         "tip_mul": "💡 Tip: multiplication is repeated addition",
+        "tip_div": "💡 Tip: division means splitting into equal parts",
+        "tip_pow": "💡 Tip: exponentiation means multiplying a number by itself",
 
         # Settings
         "settings": "⚙️ Settings",
