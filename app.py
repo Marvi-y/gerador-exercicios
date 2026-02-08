@@ -33,7 +33,8 @@ def init_state():
         st.session_state.b = None
     if "operacao" not in st.session_state:
         st.session_state.operacao = None
-    
+   
+init_state()
 
 titulo(T)
 configuracoes(T)
