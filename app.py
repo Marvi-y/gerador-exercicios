@@ -35,6 +35,9 @@ a = st.session_state.a
 b = st.session_state.b
     
 symbol = "²" if op == "^" and st.session_state.b == 2 else op
+st.subheader(
+    f"{T['exercise']}: {a} {symbol} {b if op != '^' else ''}"
+)
 
 resposta = st.text_input(T["input"], placeholder=T["placeholder"])
 
