@@ -17,7 +17,8 @@ def init_state():
         "explicacao": None,
 
         # configurações do usuário
-        "operacoes_ativas": ["+", "-", "*"]
+        "operacoes_ativas": ["+", "-", "*"],
+        "precisa_novo_exercicio": False,
     }
 
     for key, value in defaults.items():
