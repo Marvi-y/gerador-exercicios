@@ -15,7 +15,8 @@ def gerar_exercicio(T, lang):
     else:
         minimo, maximo = 50, 100
 
-    operacao = random.choice(["+", "-", "*", "/", "^"])
+    operacoes = st.session_state.get("operacoes_ativas", ["+", "-", "*"])
+    operacao = random.choice(operacoes)
 
     # valores padrão (segurança)
     a = b = resultado = None
