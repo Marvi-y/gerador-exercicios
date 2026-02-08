@@ -27,3 +27,22 @@ def historico(T):
             st.success(f"✅ {item['expressao']} = {item['resposta_correta']}")
         else:
             st.error(f"❌ {item['expressao']} = {item['resposta_correta']}")
+def estatisticas(T, stats):
+    st.divider()
+    st.subheader(T["stats"])
+
+    if not stats:
+        st.write(T["no_stats"])
+        return
+
+    st.write(f"📘 {T['total_exercises']}: **{stats['total']}**")
+    st.write(f"✅ {T['correct_answers']}: **{stats['acertos']}**")
+    st.write(f"❌ {T['wrong_answers']}: **{stats['erros']}**")
+    st.write(f"🎯 {T['accuracy']}: **{stats['taxa_acerto']}%**")
+
+    if stats["taxa_acerto"] >= 70:
+        st.success(T["performance_good"])
+    elif stats["taxa_acerto"] >= 40:
+        st.info(T["performance_medium"])
+    else:
+        st.warning(T["performance_low"])
