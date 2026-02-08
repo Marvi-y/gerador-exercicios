@@ -100,13 +100,17 @@ if st.session_state.a is None:
 st.title(T["title"])
 st.write(T["subtitle"])
 
-st.subheader("⚙️ Configurações")
+st.subheader(T["settings"])
 opcao = st.selectbox(
-    "Escolha a dificuldade (ou deixe automático)",
-    ["Automático", "Fácil", "Médio", "Difícil"]
+    T["choose_difficulty"],
+    [T["auto"], T["easy"], T["medium"], T["hard"]]
 )
 
-st.session_state.dificuldade_manual = None if opcao == "Automático" else opcao
+
+st.session_state.dificuldade_manual = (
+    None if opcao == T["auto"] else opcao
+)
+
 
 st.subheader(f"🏆 {T['level']} {st.session_state.nivel}")
 st.write(
@@ -115,7 +119,7 @@ st.write(
 st.write(f"🔥 {T['streak']}: {st.session_state.acertos}/3")
 
 if st.session_state.erros:
-    if st.button("🔁 Treinar exercícios errados"):
+    st.button(T["train_errors"])
         st.session_state.modo_treino_erros = True
         gerar_exercicio()
 
@@ -191,10 +195,11 @@ if st.button(T["new"], use_container_width=True):
 # HISTÓRICO
 # =============================
 st.divider()
-st.subheader("📊 Histórico de respostas")
+st.subheader(T["history"])
+
 
 if not st.session_state.historico:
-    st.write("Nenhum exercício resolvido ainda.")
+    st.write(T["no_history"])
 else:
     for item in reversed(st.session_state.historico):
         if item["correto"]:
