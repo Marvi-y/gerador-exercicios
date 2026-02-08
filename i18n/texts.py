@@ -31,6 +31,13 @@ TEXTS = {
         "easy": "Fácil",
         "medium": "Médio",
         "hard": "Difícil",
+        "operations": "➕ Operações",
+        "op_sum": "Soma (+)",
+        "op_sub": "Subtração (−)",
+        "op_mul": "Multiplicação (×)",
+        "op_div": "Divisão (÷)",
+        "op_pow": "Potenciação (^)",
+        "select_one_op": "Selecione pelo menos uma operação."
 
         # Treino de erros
         "train_errors": "🔁 Treinar exercícios errados",
@@ -38,7 +45,7 @@ TEXTS = {
 
         # Histórico
         "history": "📊 Histórico de respostas",
-        "no_history": "Nenhum exercício resolvido ainda.",
+        "no_history": "Nenhum exercício resolvido ainda."   
         "stats": "📈 Estatísticas",
         "total_exercises": "Total de exercícios",
         "correct_answers": "Acertos",
@@ -83,6 +90,13 @@ TEXTS = {
         "easy": "Easy",
         "medium": "Medium",
         "hard": "Hard",
+        "operations": "➕ Operations",
+        "op_sum": "Addition (+)",
+        "op_sub": "Subtraction (−)",
+        "op_mul": "Multiplication (×)",
+        "op_div": "Division (÷)",
+        "op_pow": "Exponentiation (^)",
+        "select_one_op": "Please select at least one operation."
 
         # Error training
         "train_errors": "🔁 Practice wrong exercises",
