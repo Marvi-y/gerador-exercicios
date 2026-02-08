@@ -40,8 +40,7 @@ TEXTS = {
         "select_one_op": "Selecione pelo menos uma operação."
 
         # Treino de erros
-        "train_errors": "🔁 Treinar exercícios errados",
-        "back_normal": "⬅️ Voltar ao modo normal",
+        
 
         # Histórico
         "history": "📊 Histórico de respostas",
@@ -99,8 +98,7 @@ TEXTS = {
         "select_one_op": "Please select at least one operation."
 
         # Error training
-        "train_errors": "🔁 Practice wrong exercises",
-        "back_normal": "⬅️ Back to normal mode",
+       
 
         # History
         "history": "📊 Answer history",
