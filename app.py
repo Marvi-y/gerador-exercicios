@@ -1,7 +1,7 @@
 import streamlit as st
 from i18n.texts import TEXTS
 from logic.state import init_state
-from logic.exercises import gerar_exercicio, dificuldade_por_nivel
+from logic.difficulty import dificuldade_por_nivel
 from ui.layout import titulo, configuracoes, historico
 from logic.stats import calcular_estatisticas
 from ui.layout import estatisticas
