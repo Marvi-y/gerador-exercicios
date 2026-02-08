@@ -3,6 +3,8 @@ from i18n.texts import TEXTS
 from logic.state import init_state
 from logic.exercises import gerar_exercicio, dificuldade_por_nivel
 from ui.layout import titulo, configuracoes, historico
+from logic.stats import calcular_estatisticas
+from ui.layout import estatisticas
 
 st.set_page_config(page_title="Gerador Educacional", page_icon="📘")
 
@@ -59,5 +61,8 @@ if st.button(T["check"], use_container_width=True):
 
 if st.button(T["new"], use_container_width=True):
     gerar_exercicio(T, st.session_state.lang)
+
+stats = calcular_estatisticas(st.session_state.historico)
+estatisticas(T, stats)
 
 historico(T)
