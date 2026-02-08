@@ -123,9 +123,9 @@ if st.session_state.erros:
     st.session_state.modo_treino_erros = True
     gerar_exercicio()
 if st.session_state.modo_treino_erros:
-if st.button(T["back_normal"]):
-st.session_state.modo_treino_erros = False
-gerar_exercicio()
+   if st.button(T["back_normal"]):
+    st.session_state.modo_treino_erros = False
+    gerar_exercicio()
 st.subheader(
     f"{T['exercise']}: {st.session_state.a} "
     f"{st.session_state.operacao} {st.session_state.b}"
