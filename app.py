@@ -5,6 +5,7 @@ from logic.difficulty import dificuldade_por_nivel
 from ui.layout import titulo, configuracoes, historico
 from logic.stats import calcular_estatisticas
 from ui.layout import estatisticas
+from logic.exercises impor gerar_exercicio
 
 st.set_page_config(page_title="Gerador Educacional", page_icon="📘")
 
