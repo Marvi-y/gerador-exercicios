@@ -125,7 +125,7 @@ if st.session_state.erros:
     
 
 if st.session_state.modo_treino_erros:
-if st.button(T["back_normal"]):
+st.button(T["back_normal"]):
 st.session_state.modo_treino_erros = False
 gerar_exercicio()
 
