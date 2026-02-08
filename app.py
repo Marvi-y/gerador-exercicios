@@ -119,7 +119,7 @@ st.write(
 st.write(f"🔥 {T['streak']}: {st.session_state.acertos}/3")
 
 if st.session_state.erros:
-    st.button(T["train_errors"])
+   if st.button(T["train_errors"])
     st.session_state.modo_treino_erros = True
     gerar_exercicio()
 if st.session_state.modo_treino_erros:
