@@ -124,9 +124,9 @@ if st.session_state.erros:
     gerar_exercicio()
 
 if st.session_state.modo_treino_erros:
-    if st.button("⬅️ Voltar ao modo normal"):
-    st.session_state.modo_treino_erros = False
-    gerar_exercicio()
+if st.button("⬅️ Voltar ao modo normal"):
+st.session_state.modo_treino_erros = False
+gerar_exercicio()
 
 st.subheader(
     f"{T['exercise']}: {st.session_state.a} "
