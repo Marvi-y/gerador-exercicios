@@ -16,7 +16,7 @@ def init_state():
         "resultado": None,
         "explicacao": None,
 
-        # configurações do usuário
+        # configurações
         "operacoes_ativas": ["+", "-", "*"],
         "precisa_novo_exercicio": False,
     }
