@@ -6,6 +6,7 @@ from ui.layout import titulo, configuracoes, historico
 from logic.stats import calcular_estatisticas
 from ui.layout import estatisticas
 from logic.exercises import gerar_exercicio
+from ui.settings import selecionar_operacoes
 
 st.set_page_config(page_title="Gerador Educacional", page_icon="📘")
 
@@ -25,12 +26,15 @@ init_state()
 
 if st.session_state.a is None:
     gerar_exercicio(T, st.session_state.lang)
+def init_state():
+    if "operacoes_ativas" not in st.session_state:
+        st.session_state.operacoes_ativas = ["+", "-", "*"]
 
 titulo(T)
 configuracoes(T)
 op = st.session_state.operacao
 symbol = "²" if op == "^" and st.session_state.b == 2 else op
-
+selecionar_operacoes(T)
 st.subheader(
     f"{T['exercise']}: {st.session_state.a} "
     f"{symbol} {st.session_state.b if op != '^' else ''}"
