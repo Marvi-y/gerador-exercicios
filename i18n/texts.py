@@ -38,7 +38,7 @@ TEXTS = {
 
         # Histórico
         "history": "📊 Histórico de respostas",
-        "no_history": "Nenhum exercício resolvido ainda."   
+        "no_history": "Nenhum exercício resolvido ainda.",
         "stats": "📈 Estatísticas",
         "total_exercises": "Total de exercícios",
         "correct_answers": "Acertos",
