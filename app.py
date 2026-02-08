@@ -30,7 +30,12 @@ configuracoes(T)
 
 st.subheader(
     f"{T['exercise']}: {st.session_state.a} "
-    f"{st.session_state.operacao} {st.session_state.b}"
+   op = st.session_state.operacao
+symbol = "²" if op == "^" and st.session_state.b == 2 else op
+
+st.subheader(
+    f"{T['exercise']}: {st.session_state.a} "
+    f"{symbol} {st.session_state.b if op != '^' else ''}"
 )
 
 resposta = st.text_input(T["input"], placeholder=T["placeholder"])
