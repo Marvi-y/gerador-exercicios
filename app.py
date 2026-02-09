@@ -23,20 +23,15 @@ T = TEXTS[st.session_state.lang]
 # estado
 init_state()
 
-# UI fixa
+# 🔑 gera exercício ANTES de mostrar qualquer coisa
+if st.session_state.operacao is None:
+    gerar_exercicio(T, st.session_state.lang)
+
+# ---------------- UI ----------------
 titulo(T)
 configuracoes(T)
 selecionar_operacoes(T)
 
-# 🔑 GERAR EXERCÍCIO APENAS AQUI
-if (
-    st.session_state.operacao is None
-    or st.session_state.precisa_novo_exercicio
-):
-    gerar_exercicio(T, st.session_state.lang)
-    st.session_state.precisa_novo_exercicio = False
-
-# 🔑 SEM VARIÁVEIS LOCAIS
 a = st.session_state.a
 b = st.session_state.b
 op = st.session_state.operacao
@@ -47,15 +42,13 @@ st.subheader(
     f"{T['exercise']}: {a} {symbol} {b if op != '^' else ''}"
 )
 
-# resposta
+# -------- FORM (EVITA ENTER BUG) --------
 with st.form("resposta_form", clear_on_submit=True):
     resposta = st.text_input(
         T["input"],
         placeholder=T["placeholder"]
     )
-
     submitted = st.form_submit_button(T["check"])
-
 
 if submitted:
     try:
@@ -67,7 +60,7 @@ if submitted:
     correto = resposta == st.session_state.resultado
 
     st.session_state.historico.append({
-        "expressao": f"{st.session_state.a} {st.session_state.operacao} {st.session_state.b}",
+        "expressao": f"{a} {op} {b}",
         "resposta_usuario": resposta,
         "resposta_correta": st.session_state.resultado,
         "correto": correto
@@ -79,7 +72,8 @@ if submitted:
         st.error(T["wrong"])
         st.info(st.session_state.explicacao)
 
-    gerar_exercicio(T, st.session_state.lang)
+    # 🔑 APENAS RESETAR O EXERCÍCIO
+    st.session_state.operacao = None
     # 🔑 APENAS SINALIZA
     st.session_state.precisa_novo_exercicio = True
 
