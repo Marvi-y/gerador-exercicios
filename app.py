@@ -56,7 +56,8 @@ with st.form("resposta_form", clear_on_submit=True):
 
     submitted = st.form_submit_button(T["check"])
 
-   if submitted:
+
+if submitted:
     try:
         resposta = int(resposta)
     except:
