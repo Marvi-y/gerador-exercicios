@@ -48,20 +48,28 @@ st.subheader(
 )
 
 # resposta
-resposta = st.text_input(
-    T["input"],
-    placeholder=T["placeholder"],
-    key="resposta_usuario"
-)
+with st.form("resposta_form", clear_on_submit=True):
+    resposta = st.text_input(
+        T["input"],
+        placeholder=T["placeholder"]
+    )
 
-if st.button(T["check"], use_container_width=True):
+    submitted = st.form_submit_button(T["check"])
+   if submitted:
     try:
-        resposta = int(st.session_state.resposta_usuario)
+        resposta = int(resposta)
     except:
         st.warning(T["only_numbers"])
         st.stop()
 
     correto = resposta == st.session_state.resultado
+
+    st.session_state.historico.append({
+        "expressao": f"{st.session_state.a} {st.session_state.operacao} {st.session_state.b}",
+        "resposta_usuario": resposta,
+        "resposta_correta": st.session_state.resultado,
+        "correto": correto
+    })
 
     if correto:
         st.success(T["correct"])
@@ -69,8 +77,7 @@ if st.button(T["check"], use_container_width=True):
         st.error(T["wrong"])
         st.info(st.session_state.explicacao)
 
-    st.session_state.resposta_usuario = ""
-    st.session_state.precisa_novo_exercicio = True
+    gerar_exercicio(T, st.session_state.lang)
     # 🔑 APENAS SINALIZA
     st.session_state.precisa_novo_exercicio = True
 
