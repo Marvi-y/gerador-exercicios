@@ -2,22 +2,32 @@ import streamlit as st
 
 def init_state():
     defaults = {
+        "lang": "pt",
+
+        # progresso
         "nivel": 1,
         "acertos": 0,
         "historico": [],
         "erros": [],
-        "modo_treino_erros": False,
+
+        # modos
+        "modo_correcao": False,
+
+        # dificuldade
         "dificuldade_manual": None,
 
+        # exercício atual
         "a": None,
         "b": None,
         "operacao": None,
         "resultado": None,
         "explicacao": None,
 
+        # controle
         "operacoes_ativas": ["+", "-", "*"],
         "novo_exercicio": True,
     }
 
     for k, v in defaults.items():
-        st.session_state.setdefault(k, v)
+        if k not in st.session_state:
+            st.session_state[k] = v
