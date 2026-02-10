@@ -10,7 +10,7 @@ def init_state():
         "historico": [],
         "operacoes_ativas": ["+", "-", "*"],
         "lang": "pt",
-    }
+}
     
 for k, v in defaults.items():
     st.session_state.setdefault(k, v)
