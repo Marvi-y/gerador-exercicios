@@ -2,28 +2,21 @@ import streamlit as st
 
 def init_state():
     defaults = {
-        # exercício atual
+        "nivel": 1,
+        "acertos": 0,
+        "historico": [],
+        "erros": [],
+        "modo_treino_erros": False,
+        "dificuldade_manual": None,
+
         "a": None,
         "b": None,
         "operacao": None,
         "resultado": None,
         "explicacao": None,
 
-        # progressão
-        "nivel": 1,
-        "acertos": 0,
-        "dificuldade_manual": None, 
-
-        # histórico
-        "historico": [],
-        "erros": [],
-
-        # modos
-        "modo_correcao": False,
-
-        # configurações
         "operacoes_ativas": ["+", "-", "*"],
-        "lang": "pt",
+        "novo_exercicio": True,
     }
 
     for k, v in defaults.items():
