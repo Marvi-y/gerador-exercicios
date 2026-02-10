@@ -1,3 +1,4 @@
+import streamlit as st
 def dificuldade_por_nivel(nivel, lang):
     if nivel == 1:
         return "Fácil" if lang == "pt" else "Easy"
