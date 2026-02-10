@@ -3,7 +3,7 @@ from i18n.texts import TEXTS
 from logic.state import init_state
 from logic.exercises import gerar_exercicio
 from logic.stats import calcular_estatisticas
-from ui.layout import titulo, configuracoes, historico, estatisticas
+from ui.layout import titulo, configuracoes, historico, estatisticas, erro
 from ui.settings import selecionar_operacoes
 
 st.set_page_config(page_title="Gerador Educacional", page_icon="📘")
