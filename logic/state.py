@@ -9,6 +9,6 @@ def init_state():
         "operacoes_ativas": ["+", "-", "*"],
         "lang": "pt",
     }
-
-    for k, v in defaults.items():
-        st.session_state.setdefault(k, v)
+    
+for k, v in defaults.items():
+    st.session_state.setdefault(k, v)
