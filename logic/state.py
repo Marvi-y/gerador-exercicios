@@ -9,6 +9,11 @@ def init_state():
         "resultado": None,
         "explicacao": None,
 
+        # progressão
+        "nivel": 1,
+        "acertos": 0,
+        "dificuldade_manual": None, 
+
         # histórico
         "historico": [],
         "erros": [],
