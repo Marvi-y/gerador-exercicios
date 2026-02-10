@@ -3,7 +3,7 @@ from i18n.texts import TEXTS
 from logic.state import init_state
 from logic.exercises import gerar_exercicio
 from logic.stats import calcular_estatisticas
-from ui.layout import titulo, configuracoes, historico, estatisticas, erro
+from ui.layout import titulo, configuracoes, historico, estatisticas
 from ui.settings import selecionar_operacoes
 
 st.set_page_config(page_title="Gerador Educacional", page_icon="📘")
@@ -24,19 +24,11 @@ T = TEXTS[st.session_state.lang]
 init_state()
 
 # 🔑 gera exercício ANTES de mostrar qualquer coisa
-if st.session_state.operacao is None:
+if st.session_state.novo_exercicio:
     gerar_exercicio(T, st.session_state.lang)
+    st.session_state.novo_exercicio = False
 
 # ---------------- UI ----------------
-acao = erro(T)
-
-if acao == "entrar":
-    st.session_state.modo_correcao = True
-    st.session_state.operacao = None
-
-elif acao == "sair":
-    st.session_state.modo_correcao = False
-    st.session_state.operacao = None
 titulo(T)
 configuracoes(T)
 selecionar_operacoes(T)
@@ -51,12 +43,9 @@ st.subheader(
     f"{T['exercise']}: {a} {symbol} {b if op != '^' else ''}"
 )
 
-# -------- FORM (EVITA ENTER BUG) --------
+# 🔒 FORM resolve ENTER + estado quebrado
 with st.form("resposta_form", clear_on_submit=True):
-    resposta = st.text_input(
-        T["input"],
-        placeholder=T["placeholder"]
-    )
+    resposta = st.text_input(T["input"])
     submitted = st.form_submit_button(T["check"])
 
 if submitted:
@@ -81,25 +70,13 @@ if submitted:
         st.error(T["wrong"])
         st.info(st.session_state.explicacao)
 
-    if not correto:
-        st.session_state.erros.append({
-        "a": a,
-        "b": b,
-        "operacao": op,
-        "resultado": st.session_state.resultado,
-        "explicacao": st.session_state.explicacao,
-    })
-
-    # 🔑 APENAS RESETAR O EXERCÍCIO
-    st.session_state.operacao = None
-    # 🔑 APENAS SINALIZA
-    st.session_state.precisa_novo_exercicio = True
+    st.session_state.novo_exercicio = True
+    st.rerun()
 
 if st.button(T["new"], use_container_width=True):
-    st.session_state.precisa_novo_exercicio = True
+    st.session_state.novo_exercicio = True
+    st.rerun()
 
-# estatísticas
 stats = calcular_estatisticas(st.session_state.historico)
 estatisticas(T, stats)
-
 historico(T)
