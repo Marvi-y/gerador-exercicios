@@ -28,7 +28,7 @@ def historico(T):
         else:
             st.error(f"❌ {item['expressao']} = {item['resposta_correta']}")
 def erro(T):
-if st.session_state.erros and not st.session_state.modo_correcao:
+    if st.session_state.erros and not st.session_state.modo_correcao:
         if st.button("🔁 " + T["fix_errors"]):
             return "entrar"
 
