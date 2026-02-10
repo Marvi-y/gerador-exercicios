@@ -82,7 +82,7 @@ if submitted:
         st.info(st.session_state.explicacao)
 
     if not correto:
-    st.session_state.erros.append({
+        st.session_state.erros.append({
         "a": a,
         "b": b,
         "operacao": op,
