@@ -3,7 +3,6 @@ import streamlit as st
 from logic.difficulty import dificuldade_por_nivel
 
 def gerar_exercicio(T, lang):
-    # 🔁 MODO CORREÇÃO DE ERROS
     if st.session_state.modo_correcao:
         if not st.session_state.erros:
             st.session_state.modo_correcao = False
@@ -21,7 +20,6 @@ def gerar_exercicio(T, lang):
         })
         return
 
-    # 🟢 MODO NORMAL
     dificuldade = st.session_state.dificuldade_manual
 
     if not dificuldade:
@@ -44,7 +42,6 @@ def gerar_exercicio(T, lang):
 
     operacao = random.choice(operacoes)
 
-    # valores padrão
     a = b = resultado = None
     explicacao = ""
 
