@@ -3,10 +3,32 @@ import streamlit as st
 from logic.difficulty import dificuldade_por_nivel
 
 def gerar_exercicio(T, lang):
+    # 🔁 MODO CORREÇÃO DE ERROS
+    if st.session_state.modo_correcao:
+        if not st.session_state.erros:
+            st.session_state.modo_correcao = False
+            st.session_state.operacao = None
+            return
+
+        erro = random.choice(st.session_state.erros)
+
+        st.session_state.update({
+            "a": erro["a"],
+            "b": erro["b"],
+            "operacao": erro["operacao"],
+            "resultado": erro["resultado"],
+            "explicacao": erro["explicacao"]
+        })
+        return
+
+    # 🟢 MODO NORMAL
     dificuldade = st.session_state.dificuldade_manual
 
     if not dificuldade:
-        dificuldade = dificuldade_por_nivel(st.session_state.nivel, lang)
+        dificuldade = dificuldade_por_nivel(
+            st.session_state.nivel,
+            lang
+        )
 
     if dificuldade in ["Fácil", "Easy"]:
         minimo, maximo = 1, 10
@@ -15,10 +37,14 @@ def gerar_exercicio(T, lang):
     else:
         minimo, maximo = 50, 100
 
-    operacoes = st.session_state.get("operacoes_ativas", ["+", "-", "*"])
+    operacoes = st.session_state.get(
+        "operacoes_ativas",
+        ["+", "-", "*"]
+    )
+
     operacao = random.choice(operacoes)
 
-    # valores padrão (segurança)
+    # valores padrão
     a = b = resultado = None
     explicacao = ""
 
