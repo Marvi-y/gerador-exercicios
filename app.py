@@ -28,6 +28,15 @@ if st.session_state.operacao is None:
     gerar_exercicio(T, st.session_state.lang)
 
 # ---------------- UI ----------------
+acao = erro(T)
+
+if acao == "entrar":
+    st.session_state.modo_correcao = True
+    st.session_state.operacao = None
+
+elif acao == "sair":
+    st.session_state.modo_correcao = False
+    st.session_state.operacao = None
 titulo(T)
 configuracoes(T)
 selecionar_operacoes(T)
@@ -71,6 +80,15 @@ if submitted:
     else:
         st.error(T["wrong"])
         st.info(st.session_state.explicacao)
+
+    if not correto:
+    st.session_state.erros.append({
+        "a": a,
+        "b": b,
+        "operacao": op,
+        "resultado": st.session_state.resultado,
+        "explicacao": st.session_state.explicacao,
+    })
 
     # 🔑 APENAS RESETAR O EXERCÍCIO
     st.session_state.operacao = None
