@@ -1,5 +1,5 @@
 import streamlit as st 
-def init_state()
+def init_state():
     defaults = {
         "a": None,
         "b": None,
