@@ -42,6 +42,7 @@ if st.button(T["check"], use_container_width=True):
         "b": b,
         "operacao": op,
         "resultado": st.session_state.resultado,
+        "correto":correto
         "explicacao": st.session_state.explicacao,
     }
 
