@@ -63,6 +63,11 @@ if st.button(T["check"], use_container_width=True):
     "resposta_usuario": resposta,
     "correto": correto
     })
+    
+    st.divider()
+
+if st.button(T["new"], use_container_width=True):
+    st.session_state.novo_exercicio = True
 
 erro(T)
 
