@@ -5,7 +5,7 @@ def calcular_estatisticas(historico):
         return None
 
     total = len(historico)
-    acertos = sum(1 for h in historico if h["correto"])
+    acertos = sum(1 for h in historico if h.get["correto"])
     erros = total - acertos
 
     taxa_acerto = round((acertos / total) * 100, 1)
