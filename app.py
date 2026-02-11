@@ -59,7 +59,7 @@ if st.button(T["check"], use_container_width=True):
         st.session_state.erros.append(registro)
 
     st.session_state.historico.append({
-    "expressao": f"{st.session_state.a} {st.session_state.operacao} {st.session_state.b}",
+    "operacao": f"{st.session_state.a} {st.session_state.operacao} {st.session_state.b}",
     "resposta_usuario": resposta,
     "correto": correto
     })
