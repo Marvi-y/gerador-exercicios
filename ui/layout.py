@@ -15,7 +15,6 @@ def configuracoes(T):
 
 
 def historico(T):
-    st.divider()
     st.subheader(T["history"])
 
     if not st.session_state.historico:
@@ -23,10 +22,23 @@ def historico(T):
         return
 
     for item in reversed(st.session_state.historico):
-        if item["correto"]:
-            st.success(f"✅ {item['operacao']} = {item['acertos']}")
+        a = item.get("a", "?")
+        b = item.get("b", "?")
+        op = item.get("operacao", "?")
+        correto = item.get("correto", False)
+
+        expr = f"{a} {op} {b}"
+
+        if correto:
+            st.success(
+                f"✅ {expr} = {item.get('resposta_correta')} "
+                f"({T['you_answered']} {item.get('resposta_usuario')})"
+            )
         else:
-            st.error(f"❌ {item['operacao']} = {item['erros']}")
+            st.error(
+                f"❌ {expr} = {item.get('resposta_correta')} "
+                f"({T['you_answered']} {item.get('resposta_usuario')})"
+            )
 def erro(T):
     if st.session_state.erros:
         if st.button(T["review_errors"], use_container_width=True):
