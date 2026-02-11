@@ -57,6 +57,7 @@ TEXTS = {
         "performance_good": "Ótimo desempenho! Continue assim 🚀",
         "performance_medium": "Bom progresso, mas ainda dá para melhorar 💪",
         "performance_low": "Não desista! Errar faz parte do aprendizado 🌱",
+        "you_answered": "Você respondeu",
 
     },
 
@@ -118,5 +119,6 @@ TEXTS = {
         "performance_good": "Great performance! Keep going 🚀",
         "performance_medium": "Good progress, but you can improve 💪",
         "performance_low": "Don't give up! Making mistakes is part of learning 🌱",
+        "you_answered": "You answered",
     }
 }
