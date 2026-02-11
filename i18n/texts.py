@@ -40,7 +40,7 @@ TEXTS = {
         "select_one_op": "Selecione pelo menos uma operação.",
 
         # Treino de erros
-         "Review_errors": "Revisar erros",
+        "review_errors": "Revisar erros",
         "fix_mode_active": "Modo correção de erros ativo",
         "back_normal": "Voltar ao modo normal",
         "no_errors": "Você não possui erros para corrigir 🎉",
