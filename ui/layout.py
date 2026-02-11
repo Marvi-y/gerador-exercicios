@@ -22,23 +22,13 @@ def historico(T):
         return
 
     for item in reversed(st.session_state.historico):
-        a = item.get("a", "?")
-        b = item.get("b", "?")
-        op = item.get("operacao", "?")
-        correto = item.get("correto", False)
+        texto = f"{item['expressao']} → {item['resposta_usuario']}"
 
-        expr = f"{a} {op} {b}"
-
-        if correto:
-            st.success(
-                f"✅ {expr} = {item.get('resposta_correta')} "
-                f"({T['you_answered']} {item.get('resposta_usuario')})"
-            )
+        if item["correto"]:
+            st.success(f"✅ {texto}")
         else:
-            st.error(
-                f"❌ {expr} = {item.get('resposta_correta')} "
-                f"({T['you_answered']} {item.get('resposta_usuario')})"
-            )
+            st.error(f"❌ {texto}")
+            
 def erro(T):
     if st.session_state.erros:
         if st.button(T["review_errors"], use_container_width=True):
