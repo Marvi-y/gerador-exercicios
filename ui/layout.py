@@ -24,7 +24,7 @@ def historico(T):
 
     for item in reversed(st.session_state.historico):
         if item["correto"]:
-            st.success(f"✅ {item['operacao']} = {item['correto']}")
+            st.success(f"✅ {item['operacao']} = {item['acertos']}")
         else:
             st.error(f"❌ {item['operacao']} = {item['correto']}")
 def erro(T):
