@@ -22,7 +22,7 @@ def historico(T):
         return
 
     for item in reversed(st.session_state.historico):
-        texto = f"{item['operacao']} → {item['resposta_usuario']}"
+        texto = f"{item['operacao']} = {item['resposta_usuario']}"
 
         if item["correto"]:
             st.success(f"✅ {texto}")
