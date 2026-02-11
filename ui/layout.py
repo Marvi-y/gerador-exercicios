@@ -28,17 +28,12 @@ def historico(T):
         else:
             st.error(f"❌ {item['expressao']} = {item['resposta_correta']}")
 def erro(T):
-    if st.session_state.erros and not st.session_state.modo_correcao:
-        if st.button("🔁 " + T["fix_errors"]):
-            return "entrar"
+    if st.session_state.erros:
+        if st.button(T["review_errors"], use_container_width=True):
+            st.session_state.modo_correcao = True
+            st.session_state.novo_exercicio = True
 
-    if st.session_state.modo_correcao:
-        st.info("🧠 " + T["fix_mode_active"])
-
-        if st.button("⬅️ " + T["back_normal"]):
-            return "sair"
-
-    return None
+   
 def estatisticas(T, stats):
     st.divider()
     st.subheader(T["stats"])
