@@ -11,9 +11,9 @@ def calcular_estatisticas(historico):
     taxa_acerto = round((acertos / total) * 100, 1)
 
     operacoes = [
-        h["expressao"].split()[1]
-        for h in historico
-        if not h["correto"]
+    h["operacao"]
+    for h in historico
+    if not h.get("correto")
     ]
 
     erros_por_operacao = Counter(operacoes)
