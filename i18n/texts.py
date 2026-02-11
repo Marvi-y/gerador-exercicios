@@ -40,7 +40,7 @@ TEXTS = {
         "select_one_op": "Selecione pelo menos uma operação.",
 
         # Treino de erros
-         "fix_errors": "Corrigir erros",
+         "Review_errors": "Revisar erros",
         "fix_mode_active": "Modo correção de erros ativo",
         "back_normal": "Voltar ao modo normal",
         "no_errors": "Você não possui erros para corrigir 🎉",
@@ -101,7 +101,7 @@ TEXTS = {
         "select_one_op": "Please select at least one operation.",
 
         # Error training
-        "fix_errors": "Corrigir erros",
+        "review_errors": "Review erros",
         "fix_mode_active": "Modo correção de erros ativo",
         "back_normal": "Voltar ao modo normal",
         "no_errors": "Você não possui erros para corrigir 🎉",
