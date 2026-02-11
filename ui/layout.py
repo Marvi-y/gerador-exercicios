@@ -26,7 +26,7 @@ def historico(T):
         if item["correto"]:
             st.success(f"✅ {item['operacao']} = {item['acertos']}")
         else:
-            st.error(f"❌ {item['operacao']} = {item['correto']}")
+            st.error(f"❌ {item['operacao']} = {item['erros']}")
 def erro(T):
     if st.session_state.erros:
         if st.button(T["review_errors"], use_container_width=True):
