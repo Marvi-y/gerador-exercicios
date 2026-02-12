@@ -44,7 +44,6 @@ if st.button(T["check"], use_container_width=True):
         "resposta_usuario": resposta,
         "resultado": st.session_state.resultado,
         "correto":correto,
-        "explicacao": st.session_state.explicacao,
     }
 
     if correto:
@@ -59,12 +58,34 @@ if st.button(T["check"], use_container_width=True):
         st.session_state.erros.append(registro)
 
 
-    st.session_state.historico.append({
-    "operacao": f"{st.session_state.a} {st.session_state.operacao} {st.session_state.b}",
-    "resposta_usuario": resposta,
-    "correto": correto
-    })
+   st.session_state.historico.append(registro)
 
+    if correto:
+        
+        st.session_state.feedback_tipo = "correct"
+
+        if st.session_state.modo_correcao:
+            if st.session_state.erros:
+                st.session_state.erros.pop(0)
+
+    else:
+        st.session_state.feedback_tipo = "wrong"
+        st.session_state.erros.append(registro)
+
+    st.session_state.mostrar_feedback = True
+    st.rerun()
+
+    if st.session_state.mostrar_feedback:
+
+    if st.session_state.feedback_tipo == "correct":
+        st.success(T["correct"])
+
+    elif st.session_state.feedback_tipo == "wrong":
+        st.error(T["wrong"])
+        st.info(st.session_state.explicacao)
+
+    # prepara próximo exercício
+    st.session_state.mostrar_feedback = False
     st.session_state.novo_exercicio = True
     st.rerun()
 
