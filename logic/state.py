@@ -9,6 +9,8 @@ def init_state():
         "acertos": 0,
         "historico": [],
         "erros": [],
+        "mostrar_feedback": False,
+        "feedback_tipo": None,
 
         # modos
         "modo_correcao": False,
