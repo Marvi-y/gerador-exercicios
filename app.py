@@ -63,13 +63,13 @@ if st.session_state.etapa == "responder":
         st.session_state.etapa = "feedback"
         st.rerun()
     
-   if st.session_state.etapa == "feedback":
+if st.session_state.etapa == "feedback":
 
-       if st.session_state.feedback_tipo == "correct":
-         st.success(T["correct"])
-       else:
-         st.error(T["wrong"])
-         st.info(st.session_state.explicacao)
+    if st.session_state.feedback_tipo == "correct":
+        st.success(T["correct"])
+    else:
+        st.error(T["wrong"])
+        st.info(st.session_state.explicacao)
 
     if st.button(T["new"], use_container_width=True):
         st.session_state.etapa = "responder"
