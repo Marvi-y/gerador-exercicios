@@ -65,9 +65,9 @@ if st.session_state.etapa == "responder":
     
    if st.session_state.etapa == "feedback":
 
-      if st.session_state.feedback_tipo == "correct":
+       if st.session_state.feedback_tipo == "correct":
          st.success(T["correct"])
-      else:
+       else:
          st.error(T["wrong"])
          st.info(st.session_state.explicacao)
 
