@@ -68,6 +68,7 @@ if st.button(T["check"], use_container_width=True):
 
 if st.button(T["new"], use_container_width=True):
     st.session_state.novo_exercicio = True
+    st.rerun()
 
 erro(T)
 
