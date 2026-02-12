@@ -58,15 +58,16 @@ if st.button(T["check"], use_container_width=True):
         st.info(st.session_state.explicacao)
         st.session_state.erros.append(registro)
 
-    st.session_state.novo_exercicio = True
-    st.rerun()
 
     st.session_state.historico.append({
     "operacao": f"{st.session_state.a} {st.session_state.operacao} {st.session_state.b}",
     "resposta_usuario": resposta,
     "correto": correto
     })
-    
+
+    st.session_state.novo_exercicio = True
+    st.rerun()
+
     st.divider()
 
 if st.button(T["new"], use_container_width=True):
