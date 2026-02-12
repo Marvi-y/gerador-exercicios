@@ -57,8 +57,7 @@ if st.button(T["check"], use_container_width=True):
         st.info(st.session_state.explicacao)
         st.session_state.erros.append(registro)
 
-
-   st.session_state.historico.append(registro)
+    st.session_state.historico.append(registro)
        if correto:
        st.session_state.feedback_tipo = "correct"
 
