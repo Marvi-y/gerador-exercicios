@@ -28,52 +28,54 @@ st.subheader(f"{T['exercise']}: {a} {symbol} {b if op != '^' else ''}")
 
 resposta = st.text_input(T["input"], key="resposta")
 
-if st.button(T["check"], use_container_width=True):
+if st.session_state.etapa == "responder":
 
-    try:
-        resposta_int = int(resposta)
-    except:
-        st.warning(T["only_numbers"])
-        st.stop()
+    if st.button(T["check"], use_container_width=True):
 
-    correto = resposta_int == st.session_state.resultado
+        try:
+            resposta_int = int(resposta)
+        except:
+            st.warning(T["only_numbers"])
+            st.stop()
 
-    registro = {
-        "a": a,
-        "b": b,
-        "operacao": op,
-        "resposta_usuario": resposta_int,
-        "correto": correto,
-    }
+        correto = resposta_int == st.session_state.resultado
 
-    st.session_state.historico.append(registro)
+        registro = {
+            "a": a,
+            "b": b,
+            "operacao": op,
+            "resposta_usuario": resposta_int,
+            "correto": correto,
+        }
 
-    if correto:
-        st.session_state.feedback_tipo = "correct"
-        st.session_state.acertos += 1
+        st.session_state.historico.append(registro)
 
-        if st.session_state.modo_correcao and st.session_state.erros:
-            st.session_state.erros.pop(0)
+        if correto:
+            st.session_state.acertos += 1
+            st.session_state.feedback_tipo = "correct"
 
-    else:
-        st.session_state.feedback_tipo = "wrong"
-        st.session_state.erros.append(registro)
-
-    st.session_state.mostrar_feedback = True
-    st.rerun()
-    
-    if st.session_state.get("mostrar_feedback"):
-
-        if st.session_state.feedback_tipo == "correct":
-            st.success(T["correct"])
+            if st.session_state.modo_correcao and st.session_state.erros:
+                st.session_state.erros.pop(0)
         else:
-            st.error(T["wrong"])
-            st.info(st.session_state.explicacao)
+            st.session_state.feedback_tipo = "wrong"
+            st.session_state.erros.append(registro)
 
-    st.session_state.mostrar_feedback = False
-    st.session_state.novo_exercicio = True
-    st.rerun()
+        st.session_state.etapa = "feedback"
+        st.rerun()
     
+   if st.session_state.etapa == "feedback":
+
+      if st.session_state.feedback_tipo == "correct":
+         st.success(T["correct"])
+      else:
+         st.error(T["wrong"])
+         st.info(st.session_state.explicacao)
+
+    if st.button(T["new"], use_container_width=True):
+        st.session_state.etapa = "responder"
+        st.session_state.novo_exercicio = True
+        st.rerun()
+        
     st.session_state.historico.append(registro)
     
     if correto:
