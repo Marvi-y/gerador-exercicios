@@ -11,8 +11,7 @@ def init_state():
         "erros": [],
         "mostrar_feedback": False,
         "feedback_tipo": None,
-        "etapa": "responder",
-
+        
         # modos
         "modo_correcao": False,
 
@@ -25,7 +24,7 @@ def init_state():
         "operacao": None,
         "resultado": None,
         "explicacao": None,
-
+        "etapa": "responder",
         # controle
         "operacoes_ativas": ["+", "-", "*"],
         "novo_exercicio": True,
