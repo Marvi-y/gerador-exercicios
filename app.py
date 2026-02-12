@@ -29,34 +29,51 @@ st.subheader(f"{T['exercise']}: {a} {symbol} {b if op != '^' else ''}")
 resposta = st.text_input(T["input"], key="resposta")
 
 if st.button(T["check"], use_container_width=True):
+
     try:
-        resposta = int(resposta)
+        resposta_int = int(resposta)
     except:
         st.warning(T["only_numbers"])
         st.stop()
 
-    correto = resposta == st.session_state.resultado
+    correto = resposta_int == st.session_state.resultado
 
     registro = {
         "a": a,
         "b": b,
         "operacao": op,
-        "resposta_usuario": resposta,
-        "resultado": st.session_state.resultado,
-        "correto":correto,
+        "resposta_usuario": resposta_int,
+        "correto": correto,
     }
 
+    st.session_state.historico.append(registro)
+
     if correto:
-        st.success(T["correct"])
+        st.session_state.feedback_tipo = "correct"
         st.session_state.acertos += 1
 
-        if st.session_state.modo_correcao:
+        if st.session_state.modo_correcao and st.session_state.erros:
             st.session_state.erros.pop(0)
+
     else:
-        st.error(T["wrong"])
-        st.info(st.session_state.explicacao)
+        st.session_state.feedback_tipo = "wrong"
         st.session_state.erros.append(registro)
 
+    st.session_state.mostrar_feedback = True
+    st.rerun()
+    
+    if st.session_state.get("mostrar_feedback"):
+
+        if st.session_state.feedback_tipo == "correct":
+            st.success(T["correct"])
+        else:
+            st.error(T["wrong"])
+            st.info(st.session_state.explicacao)
+
+    st.session_state.mostrar_feedback = False
+    st.session_state.novo_exercicio = True
+    st.rerun()
+    
     st.session_state.historico.append(registro)
     
     if correto:
