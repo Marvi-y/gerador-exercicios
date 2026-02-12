@@ -11,6 +11,7 @@ def init_state():
         "erros": [],
         "mostrar_feedback": False,
         "feedback_tipo": None,
+        "etapa": "responder",
 
         # modos
         "modo_correcao": False,
