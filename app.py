@@ -75,12 +75,12 @@ if st.button(T["check"], use_container_width=True):
 
     if st.session_state.mostrar_feedback:
 
-    if st.session_state.feedback_tipo == "correct":
-        st.success(T["correct"])
+        if st.session_state.feedback_tipo == "correct":
+            st.success(T["correct"])
 
-    elif st.session_state.feedback_tipo == "wrong":
-        st.error(T["wrong"])
-        st.info(st.session_state.explicacao)
+        elif st.session_state.feedback_tipo == "wrong":
+            st.error(T["wrong"])
+            st.info(st.session_state.explicacao)
 
     # prepara próximo exercício
     st.session_state.mostrar_feedback = False
