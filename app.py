@@ -64,7 +64,7 @@ if st.button(T["check"], use_container_width=True):
 
         if st.session_state.modo_correcao:
             if st.session_state.erros:
-            st.session_state.erros.pop(0)
+                st.session_state.erros.pop(0)
 
         else:
             st.session_state.feedback_tipo = "wrong"
