@@ -108,9 +108,6 @@ if st.session_state.etapa == "feedback":
 
     st.divider()
 
-if st.button(T["new"], use_container_width=True):
-    st.session_state.novo_exercicio = True
-    st.rerun()
 
 erro(T)
 
